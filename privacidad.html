@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de Privacidad – Trazas</title>
+  <title>Política de Privacidad – YoguApps</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -13,13 +13,19 @@
       line-height: 1.7;
     }
     header {
-      background: #E8590C;
+      background: #111;
       color: #fff;
       padding: 40px 24px 32px;
       text-align: center;
     }
     header h1 { font-size: 28px; font-weight: 800; }
-    header p  { font-size: 14px; opacity: 0.85; margin-top: 6px; }
+    header p  { font-size: 14px; opacity: 0.75; margin-top: 6px; }
+    .nav-links {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: underline; }
     main {
       max-width: 760px;
       margin: 40px auto;
@@ -28,122 +34,140 @@
     h2 {
       font-size: 18px;
       font-weight: 700;
-      color: #E8590C;
+      color: #111;
       margin: 36px 0 10px;
     }
     p, li { font-size: 15px; color: #444; }
     ul { padding-left: 20px; margin-top: 8px; }
     li { margin-bottom: 6px; }
-    a { color: #E8590C; }
+    a { color: #F07820; }
+    .intro {
+      background: #FFF3EA;
+      border: 1px solid #F5C89A;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 8px;
+    }
+    .intro p { color: #222; margin: 0; }
     .updated {
       text-align: center;
       font-size: 13px;
       color: #999;
       margin-top: 48px;
     }
+    .apps-directory {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      border-top: 1px solid #e6e6e6;
+    }
+    .apps-directory h2 { text-align: center; margin-top: 0; }
+    .apps-directory p.lead {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .app-tile {
+      display: block;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color .15s, transform .15s;
+    }
+    .app-tile:hover { border-color: #F07820; transform: translateY(-2px); }
+    .app-tile .name { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 3px; }
+    .app-tile .desc { font-size: 12px; color: #999; }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Política de Privacidad</h1>
-  <p>Aplicación Trazas · Desarrollada por Javier Nieto Grillo</p>
+  <p>YoguApps · Aplicaciones móviles al alcance de todos</p>
+  <p class="nav-links"><a href="/terminos.html">Ver Términos y Condiciones generales</a></p>
 </header>
 
 <main>
 
+  <div class="intro">
+    <p>
+      Esta es la política de privacidad <strong>general de yoguapps.com</strong> y de la actividad de YoguApps
+      como desarrollador. <strong>Cada aplicación tiene además su propia política específica</strong>, con el
+      detalle de los datos que trata esa app en concreto — la encontrarás al final de esta página.
+    </p>
+  </div>
+
   <h2>1. Responsable del tratamiento</h2>
   <p>
-    Javier Nieto Grillo<br>
-    Correo de contacto: <a href="mailto:nietogrillo@gmail.com">nietogrillo@gmail.com</a><br>
+    Javier Nieto Grillo (YoguApps)<br>
+    Correo de contacto: <a href="mailto:soporte@yoguapps.com">soporte@yoguapps.com</a><br>
     Sitio web: <a href="https://yoguapps.com">yoguapps.com</a>
   </p>
 
-  <h2>2. ¿Qué datos recopilamos?</h2>
-  <p>Trazas recopila únicamente los datos necesarios para prestar el servicio:</p>
-  <ul>
-    <li><strong>Datos de registro:</strong> correo electrónico y contraseña (cifrada).</li>
-    <li><strong>Datos de perfil:</strong> nombre, provincia, especialidad y foto de perfil (opcionales).</li>
-    <li><strong>Datos de proyectos:</strong> descripciones, presupuestos, fotos y mensajes de chat relativos a las obras gestionadas en la app.</li>
-    <li><strong>Datos de uso:</strong> información técnica como token de notificaciones push para el envío de alertas.</li>
-    <li><strong>Datos de pago:</strong> la gestión de suscripciones se realiza íntegramente a través de Apple App Store. No almacenamos datos de tarjeta de crédito.</li>
-  </ul>
-
-  <h2>3. ¿Para qué usamos tus datos?</h2>
-  <ul>
-    <li>Crear y gestionar tu cuenta de usuario.</li>
-    <li>Conectar a propietarios con contratistas para la gestión de obras.</li>
-    <li>Enviar notificaciones push sobre el estado de tus proyectos y mensajes.</li>
-    <li>Gestionar el estado de tu suscripción Trazas Pro.</li>
-    <li>Mejorar la aplicación y resolver problemas técnicos.</li>
-  </ul>
-
-  <h2>4. Terceros que acceden a los datos</h2>
-  <ul>
-    <li>
-      <strong>Supabase</strong> (base de datos y almacenamiento) —
-      <a href="https://supabase.com/privacy" target="_blank">política de privacidad</a>.
-    </li>
-    <li>
-      <strong>RevenueCat</strong> (gestión de suscripciones) —
-      <a href="https://www.revenuecat.com/privacy" target="_blank">política de privacidad</a>.
-    </li>
-    <li>
-      <strong>Apple Inc.</strong> (distribución y pagos) —
-      <a href="https://www.apple.com/es/legal/privacy/" target="_blank">política de privacidad</a>.
-    </li>
-  </ul>
-  <p>No vendemos ni cedemos tus datos a terceros con fines publicitarios.</p>
-
-  <h2>5. Conservación de los datos</h2>
+  <h2>2. Datos que recoge este sitio web</h2>
   <p>
-    Conservamos tus datos mientras mantengas una cuenta activa en Trazas.
-    Si solicitas la eliminación de tu cuenta, borraremos tus datos personales en un plazo máximo de 30 días,
-    salvo obligación legal de conservación.
+    yoguapps.com es una web informativa: presenta a YoguApps y sus aplicaciones. No incluye formularios de
+    registro ni recopila datos personales directamente — el único punto de contacto es un enlace de correo
+    electrónico (<a href="mailto:soporte@yoguapps.com">soporte@yoguapps.com</a>), que envías tú desde tu
+    propio cliente de correo.
+  </p>
+  <p>
+    El proveedor de alojamiento de esta web puede registrar datos técnicos básicos de conexión (dirección IP,
+    navegador, fecha y hora) con fines de seguridad y funcionamiento del servicio, como es habitual en
+    cualquier alojamiento web.
   </p>
 
-  <h2>6. Tus derechos (RGPD)</h2>
-  <p>Si te encuentras en la Unión Europea, tienes derecho a:</p>
-  <ul>
-    <li>Acceder a tus datos personales.</li>
-    <li>Rectificar datos incorrectos.</li>
-    <li>Solicitar la eliminación de tus datos.</li>
-    <li>Oponerte al tratamiento o solicitar su limitación.</li>
-    <li>Presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).</li>
-  </ul>
+  <h2>3. Las aplicaciones tienen su propia política</h2>
   <p>
-    Para ejercer cualquiera de estos derechos, contacta con nosotros en
-    <a href="mailto:nietogrillo@gmail.com">nietogrillo@gmail.com</a>.
+    Cuando usas una de nuestras apps (por ejemplo, Trazas), esa app recoge y trata datos personales para
+    prestarte el servicio (cuenta de usuario, contenido que subes, notificaciones, suscripciones, etc.).
+    Ese tratamiento se explica en detalle en la <strong>política de privacidad específica de cada
+    aplicación</strong>, no en esta página general.
   </p>
 
-  <h2>7. Seguridad</h2>
-  <p>
-    Aplicamos medidas técnicas y organizativas adecuadas para proteger tus datos,
-    incluyendo cifrado en tránsito (HTTPS/TLS) y en reposo, y control de acceso mediante
-    políticas de seguridad a nivel de fila en la base de datos.
+  <h2>4. Tus derechos (RGPD)</h2>
+  <p>Si te encuentras en la Unión Europea, tienes derecho a acceder, rectificar, suprimir, oponerte o limitar
+    el tratamiento de tus datos, y a presentar una reclamación ante la Agencia Española de Protección de Datos
+    (AEPD). Para ejercer estos derechos sobre los datos de una app concreta, consulta el apartado de contacto
+    de la política de esa app; para cualquier otra consulta, escríbenos a
+    <a href="mailto:soporte@yoguapps.com">soporte@yoguapps.com</a>.
   </p>
 
-  <h2>8. Menores de edad</h2>
+  <h2>5. Cambios en esta política</h2>
   <p>
-    Trazas no está dirigida a menores de 16 años. No recopilamos conscientemente
-    datos de menores. Si detectamos que un menor ha creado una cuenta, la eliminaremos de inmediato.
+    Podemos actualizar esta política ocasionalmente. La fecha de la última revisión aparece al pie de esta página.
   </p>
 
-  <h2>9. Cambios en esta política</h2>
-  <p>
-    Podemos actualizar esta política ocasionalmente. Te notificaremos de cambios significativos
-    a través de la app o por correo electrónico. La fecha de la última revisión aparece al pie de esta página.
-  </p>
-
-  <h2>10. Contacto</h2>
-  <p>
-    Para cualquier consulta sobre privacidad escríbenos a
-    <a href="mailto:nietogrillo@gmail.com">nietogrillo@gmail.com</a>.
-  </p>
-
-  <p class="updated">Última actualización: 1 de julio de 2026</p>
+  <p class="updated">Última actualización: 10 de julio de 2026</p>
 
 </main>
+
+<div class="apps-directory">
+  <h2>Políticas de privacidad por aplicación</h2>
+  <p class="lead">Elige una app para ver el detalle de los datos que trata</p>
+  <div class="app-grid">
+    <a class="app-tile" href="/trazas/privacidad.html">
+      <div class="name">Trazas</div>
+      <div class="desc">Gestión de obras y reformas</div>
+    </a>
+    <a class="app-tile" href="/peakyou/privacy/">
+      <div class="name">PeakYou</div>
+      <div class="desc">Entrenamiento y nutrición</div>
+    </a>
+    <a class="app-tile" href="/piperos/privacy/">
+      <div class="name">Piperos</div>
+      <div class="desc">Apuestas entre amigos</div>
+    </a>
+  </div>
+</div>
 
 </body>
 </html>
