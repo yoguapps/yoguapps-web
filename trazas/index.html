@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trazas — Tu obra en el bolsillo. Seguimiento de etapas, gastos, contratos e informes semanales con IA para propietarios y contratistas.">
+  <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+  <title>Trazas — YoguApps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #111111;
+      --fg: #ffffff;
+      --fg-muted: rgba(255,255,255,0.55);
+      --fg-subtle: rgba(255,255,255,0.2);
+      --border: rgba(255,255,255,0.07);
+      --accent: #F07820;
+      --accent-light: #FDBA74;
+      --accent-soft: rgba(240,120,32,0.12);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 24px; width: auto; }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--fg-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link svg { width: 16px; height: 16px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,120,32,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(240,120,32,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 14px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(240,120,32,0.25);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 28px;
+    }
+    .app-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      animation: blink 2s ease-in-out infinite;
+    }
+    .hero-title {
+      font-size: clamp(56px, 10vw, 110px);
+      font-weight: 800;
+      letter-spacing: -4px;
+      line-height: 1;
+      padding-bottom: 0.1em;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #F07820 0%, #FDBA74 60%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-tagline {
+      font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    /* ── PHONE PLACEHOLDERS ── */
+    .phones-hero {
+      display: flex;
+      gap: 24px;
+      align-items: flex-end;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .phone-wrap:first-child { transform: translateY(20px); }
+    .phone-frame {
+      width: 160px;
+      height: 347px;
+      border-radius: 30px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(240,120,32,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .phone-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60px; height: 18px;
+      background: var(--bg);
+      border-radius: 0 0 14px 14px;
+      z-index: 2;
+    }
+    .phone-placeholder-hero {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #1a0e05 0%, #261508 55%, #100905 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-placeholder-hero::after {
+      content: '';
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #F07820;
+      filter: blur(24px);
+      opacity: .4;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      opacity: .8;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 56px;
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: border-color .25s, background .25s;
+    }
+    .feature-card:hover {
+      border-color: rgba(240,120,32,0.25);
+      background: rgba(240,120,32,0.05);
+    }
+    .feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(240,120,32,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--fg-muted);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    /* ── AUDIENCE ── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      transition: border-color .25s;
+    }
+    .audience-card:hover { border-color: rgba(240,120,32,0.2); }
+    .audience-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .audience-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+    }
+    .audience-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .audience-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .audience-list li {
+      font-size: 14px;
+      color: var(--fg-muted);
+      padding-left: 18px;
+      position: relative;
+      font-weight: 300;
+    }
+    .audience-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .7;
+    }
+
+    /* ── DOWNLOAD ── */
+    #download { text-align: center; }
+    .download-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(240,120,32,0.2);
+      border-radius: 28px;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .download-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240,120,32,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .download-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      position: relative;
+    }
+    .download-sub {
+      font-size: 16px;
+      color: var(--fg-muted);
+      font-weight: 300;
+      max-width: 400px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--fg-muted);
+      text-decoration: none;
+      transition: border-color .2s, background .2s, color .2s;
+    }
+    .store-btn.available {
+      border-color: rgba(240,120,32,0.35);
+      background: rgba(240,120,32,0.08);
+      color: var(--fg);
+      cursor: pointer;
+    }
+    .store-btn.available:hover {
+      border-color: rgba(240,120,32,0.6);
+      background: rgba(240,120,32,0.14);
+    }
+    .store-btn.coming { cursor: default; opacity: .5; }
+    .store-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .store-btn-text { text-align: left; }
+    .store-btn-label { font-size: 10px; font-weight: 400; display: block; }
+    .store-btn-name { font-size: 16px; font-weight: 700; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-copy { font-size: 13px; color: var(--fg-subtle); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--fg-subtle);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--fg-muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #nav { padding: 14px 20px; }
+      #hero { padding: 100px 20px 60px; }
+      .hero-title { letter-spacing: -2px; }
+      .phones-hero { gap: 14px; }
+      .phone-frame { width: 130px; height: 282px; }
+      .section { padding: 72px 20px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .download-card { padding: 48px 24px; }
+      .store-buttons { flex-direction: column; align-items: center; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+      .footer-links { flex-direction: column; gap: 10px; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo"><img src="../img/YoguApps.png" alt="YoguApps"></a>
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+    Volver
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="app-badge"><span class="dot"></span>Disponible en App Store</div>
+    <h1 class="hero-title">Trazas</h1>
+    <p class="hero-tagline">Tu obra en el bolsillo. Controla etapas, gastos y contratos, y genera informes semanales con IA para propietarios y contratistas.</p>
+    <div class="phones-hero">
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-placeholder-hero"></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-placeholder-hero"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="section" id="features">
+  <p class="eyebrow reveal">Funcionalidades</p>
+  <h2 class="section-title reveal d1">Tu obra bajo control,<br>en todo momento</h2>
+  <p class="section-sub reveal d2">Diseñada para que nada se pierda entre llamadas, notas en papel o grupos de WhatsApp.</p>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Seguimiento de fases</div>
+      <div class="feature-desc">Registra cada etapa de tu obra con fechas límite, estado de avance y documentación adjunta.</div>
+    </div>
+    <div class="feature-card reveal d1">
+      <div class="feature-icon">💶</div>
+      <div class="feature-title">Control de gastos</div>
+      <div class="feature-desc">Presupuesto actualizado en tiempo real. Alertas automáticas cuando te desvías del plan inicial.</div>
+    </div>
+    <div class="feature-card reveal d2">
+      <div class="feature-icon">📄</div>
+      <div class="feature-title">Contratos y documentos</div>
+      <div class="feature-desc">Organiza contratos, facturas y albaranes en un solo lugar, siempre accesibles desde el móvil.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">Informes con IA</div>
+      <div class="feature-desc">Genera informes semanales profesionales con un toque. Listos para compartir con propietarios o inversores.</div>
+    </div>
+    <div class="feature-card reveal d1">
+      <div class="feature-icon">📸</div>
+      <div class="feature-title">Registro fotográfico</div>
+      <div class="feature-desc">Documenta el avance de la obra con fotos organizadas por fase y fecha. Historial visual completo.</div>
+    </div>
+    <div class="feature-card reveal d2">
+      <div class="feature-icon">🔔</div>
+      <div class="feature-title">Alertas inteligentes</div>
+      <div class="feature-desc">Notificaciones de plazos próximos, pagos pendientes y cambios de estado para que no se te escape nada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIENCE -->
+<div class="section" id="audience">
+  <p class="eyebrow reveal">Para quién es</p>
+  <h2 class="section-title reveal d1">Pensada para los dos<br>lados de la obra</h2>
+  <p class="section-sub reveal d2">Tanto si eres quien encarga la obra como quien la ejecuta, Trazas te da la información que necesitas.</p>
+  <div class="audience-grid">
+    <div class="audience-card reveal d1">
+      <span class="audience-icon">🏠</span>
+      <div class="audience-title">Para propietarios</div>
+      <p class="audience-desc">Visión clara del estado de tu obra en todo momento, sin necesidad de conocimientos técnicos ni de llamar constantemente al contratista.</p>
+      <ul class="audience-list">
+        <li>Estado de avance en tiempo real</li>
+        <li>Control del presupuesto sin sorpresas</li>
+        <li>Acceso a todos los documentos y contratos</li>
+        <li>Informes semanales automáticos</li>
+      </ul>
+    </div>
+    <div class="audience-card reveal d2">
+      <span class="audience-icon">🦺</span>
+      <div class="audience-title">Para contratistas</div>
+      <p class="audience-desc">Gestiona múltiples obras desde una sola app. Olvídate del papeleo y mantén a tus clientes informados sin esfuerzo extra.</p>
+      <ul class="audience-list">
+        <li>Gestión de varias obras simultáneas</li>
+        <li>Historial completo de cada proyecto</li>
+        <li>Generación automática de informes</li>
+        <li>Comunicación clara con el propietario</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DOWNLOAD -->
+<div class="section" id="download">
+  <div class="download-card reveal">
+    <h2 class="download-title">Descarga Trazas</h2>
+    <p class="download-sub">Ya disponible en App Store. Empieza a controlar tu obra desde hoy.</p>
+    <div class="store-buttons">
+      <a href="#" class="store-btn available">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <div class="store-btn-text">
+          <span class="store-btn-label">Disponible en</span>
+          <span class="store-btn-name">App Store</span>
+        </div>
+      </a>
+      <div class="store-btn coming">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3.18 23.76c.3.17.64.22.99.14l12.45-7.19-2.78-2.78-10.66 9.83zm-1.7-20.1C1.2 4 1 4.54 1 5.23v13.54c0 .69.2 1.23.49 1.57l.08.08 7.59-7.59v-.18L1.56 3.58l-.08.08zm17.52 9.27l-2.16-1.25-3.04 3.04 3.04 3.04 2.19-1.26c.62-.36.98-.83.98-1.28 0-.46-.39-.96-1.01-1.29zM4.17.24L16.62 7.43l-2.78 2.78-9.67-9.97z"/>
+        </svg>
+        <div class="store-btn-text">
+          <span class="store-btn-label">Próximamente en</span>
+          <span class="store-btn-name">Google Play</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2026 YoguApps</span>
+  <div class="footer-links">
+    <a href="/trazas/privacy/">Política de privacidad</a>
+    <a href="/">Inicio</a>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
