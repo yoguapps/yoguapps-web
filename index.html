@@ -333,20 +333,21 @@
     /* Phone mockups */
     .phones {
       display: flex;
-      gap: 18px;
+      gap: 14px;
       margin-top: 36px;
       align-items: flex-end;
-      justify-content: center;
+      justify-content: flex-end;
     }
     .phone {
-      width: 175px;
+      width: 120px;
       flex-shrink: 0;
     }
+    .phone:first-child { transform: translateY(14px); }
 
     .phone-shell {
-      width: 175px;
-      height: 379px;
-      border-radius: 28px;
+      width: 120px;
+      height: 260px;
+      border-radius: 22px;
       border: 1.5px solid rgba(255,255,255,0.1);
       background: #141414;
       overflow: hidden;
@@ -359,9 +360,9 @@
       position: absolute;
       top: 0; left: 50%;
       transform: translateX(-50%);
-      width: 54px; height: 16px;
+      width: 42px; height: 13px;
       background: #0a0a0a;
-      border-radius: 0 0 12px 12px;
+      border-radius: 0 0 9px 9px;
       z-index: 3;
     }
     .phone-shell img {
@@ -631,6 +632,8 @@
 
       .phones { justify-content: center; margin-top: 28px; }
       .phone { width: 220px; }
+      .phone:first-child { transform: none; }
+      .phone:last-child { display: none; }
       .phone-shell { width: 220px; height: 476px; border-radius: 34px; }
       .phone-notch { width: 64px; height: 18px; }
 
@@ -706,7 +709,13 @@
           <div class="phone">
             <div class="phone-shell">
               <div class="phone-notch"></div>
-              <img src="img/piperos-1.jpeg" alt="PeakYou captura 1">
+              <img src="img/peakyou-portada.jpeg" alt="PeakYou captura 1">
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <img src="img/piperos-2.jpeg" alt="PeakYou captura 2">
             </div>
           </div>
         </div>
@@ -728,6 +737,12 @@
               <img src="img/peakyou-1.jpeg" alt="Piperos captura 1">
             </div>
           </div>
+          <div class="phone">
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <img src="img/peakyou-2.jpeg" alt="Piperos captura 2">
+            </div>
+          </div>
         </div>
       </div>
     </a>
@@ -745,6 +760,12 @@
             <div class="phone-shell">
               <div class="phone-notch"></div>
               <img src="img/1.jpeg" alt="Trazas captura 1">
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <img src="img/2.jpeg" alt="Trazas captura 2">
             </div>
           </div>
         </div>
