@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
+  <title>Política de Privacidad — Cardián</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #111111;
+      --fg: #ffffff;
+      --fg-muted: rgba(255,255,255,0.55);
+      --fg-subtle: rgba(255,255,255,0.2);
+      --border: rgba(255,255,255,0.07);
+      --accent: #F2A93B;
+      --accent-soft: rgba(242,169,59,0.12);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.4px;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--accent);
+    }
+    .back-link {
+      font-size: 13px;
+      color: var(--fg-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link svg { width: 14px; height: 14px; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    /* Hero */
+    .page-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(242,169,59,0.22);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #F7C978;
+      margin-bottom: 28px;
+    }
+    .page-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #F2A93B;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .page-meta {
+      font-size: 14px;
+      color: var(--fg-subtle);
+      margin-bottom: 64px;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* Sections */
+    .policy-section { margin-bottom: 48px; }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      margin-bottom: 16px;
+      color: var(--fg);
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--fg-muted);
+      margin-bottom: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    ul li {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--fg-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .7;
+    }
+
+    /* Third-party cards */
+    .third-party-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .tp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: border-color .2s, background .2s;
+    }
+    .tp-card:hover {
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.12);
+    }
+    .tp-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+    .tp-use {
+      font-size: 13px;
+      color: var(--fg-subtle);
+      font-weight: 300;
+    }
+
+    /* Contact box */
+    .contact-box {
+      background: var(--accent-soft);
+      border: 1px solid rgba(242,169,59,.2);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .contact-box p { margin-bottom: 14px; }
+    .contact-box a {
+      color: #F7C978;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .contact-box a:hover { color: #fff; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--fg-subtle);
+      margin: 0;
+    }
+    footer a {
+      color: var(--fg-subtle);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    footer a:hover { color: var(--fg-muted); }
+
+    @media (max-width: 600px) {
+      header { padding: 14px 20px; }
+      main { padding: 48px 20px 80px; }
+      footer { padding: 24px 20px; }
+      .third-party-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">YoguApps <span>· Cardián</span></a>
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+    Volver al inicio
+  </a>
+</header>
+
+<main>
+
+  <div class="page-eyebrow">Cardián</div>
+  <h1>Política de privacidad</h1>
+  <p class="page-meta">Última actualización: julio de 2026</p>
+
+  <div class="policy-section">
+    <p>Cardián está diseñada para funcionar sin cuentas ni servidores propios: todos los datos de tu coche se guardan únicamente en tu dispositivo. Esta política explica qué datos maneja la app, para qué se usan y con quién se comparten.</p>
+  </div>
+
+  <hr>
+
+  <div class="policy-section">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>El responsable de Cardián es YoguApps. Puedes contactarnos en <strong>soporte@yoguapps.com</strong>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>2. Datos que recogemos</h2>
+    <p>Cardián no tiene cuentas de usuario ni servidor propio. Todo lo que introduces se guarda solo en tu dispositivo:</p>
+    <ul>
+      <li><strong>Datos del vehículo:</strong> marca, modelo, año, matrícula y kilometraje, si decides añadirlos.</li>
+      <li><strong>Recordatorios y gastos:</strong> fechas de ITV, aceite, seguro y demás mantenimientos, junto con los importes que pagas.</li>
+      <li><strong>Fotos:</strong> de tickets de gastos y del lugar donde aparcas, solo si decides añadirlas. Se guardan exclusivamente en tu dispositivo, nunca se suben a ningún servidor.</li>
+      <li><strong>Ubicación:</strong> coordenadas GPS, únicamente en el momento en que usas "¿Dónde aparqué?" o buscas la gasolinera más barata. No se recoge en segundo plano ni se envía a ningún servidor.</li>
+      <li><strong>Datos de compra:</strong> si contratas Cardián Premium, la compra la procesan Apple y RevenueCat (ver sección 4). Cardián no ve ni almacena los datos de tu tarjeta.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. Finalidad y base legal</h2>
+    <ul>
+      <li><strong>Recordatorios de mantenimiento:</strong> avisarte de ITV, aceite, seguro y demás revisiones. Base legal: ejecución del contrato.</li>
+      <li><strong>Gasolinera más barata:</strong> comparar precios oficiales cercanos a tu ubicación. Base legal: consentimiento (permiso de ubicación).</li>
+      <li><strong>¿Dónde aparqué?:</strong> guardar tu ubicación y una foto para que puedas encontrar tu coche. Base legal: consentimiento.</li>
+      <li><strong>Cardián Premium:</strong> gestionar la compra y desbloquear funciones adicionales. Base legal: ejecución del contrato.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. Servicios de terceros</h2>
+    <p>Cardián utiliza estos proveedores. Cada uno tiene su propia política de privacidad:</p>
+    <div class="third-party-grid">
+      <div class="tp-card">
+        <div class="tp-name">Geoportal de Gasolineras</div>
+        <div class="tp-use">Precios públicos de combustible (Ministerio para la Transición Ecológica)</div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-name">RevenueCat</div>
+        <div class="tp-use">Gestión de la compra de Cardián Premium</div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-name">Apple App Store</div>
+        <div class="tp-use">Distribución y procesamiento de pagos</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;">La consulta de precios de gasolineras es pública y no envía tu ubicación a ningún servidor: la comparación por distancia se calcula en tu propio móvil. No vendemos tus datos a terceros.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>5. Conservación de datos</h2>
+    <p>Tus datos viven en tu dispositivo mientras uses la app. Puedes exportarlos o eliminarlos tú mismo en cualquier momento desde Ajustes, sin necesidad de pedírnoslo: Cardián no guarda ninguna copia en un servidor.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>6. Tus derechos</h2>
+    <p>Al no existir cuenta ni servidor, tienes control directo y total sobre tus datos:</p>
+    <ul>
+      <li><strong>Acceso y portabilidad:</strong> toda tu información está siempre visible dentro de la propia app.</li>
+      <li><strong>Rectificación:</strong> puedes editar cualquier dato en cualquier momento.</li>
+      <li><strong>Supresión:</strong> desde Ajustes puedes eliminar un dato concreto o todos tus datos de golpe.</li>
+    </ul>
+    <p>Para cualquier consulta adicional, escríbenos a <strong>soporte@yoguapps.com</strong>. También puedes reclamar ante la <a href="https://www.aepd.es" style="color:#F7C978;text-decoration:none;">Agencia Española de Protección de Datos (AEPD)</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>7. Seguridad</h2>
+    <p>Tus datos se almacenan localmente con los mecanismos de seguridad propios de iOS. Las consultas a servicios externos (Geoportal de Gasolineras, RevenueCat) viajan siempre cifradas mediante HTTPS.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>8. Menores de edad</h2>
+    <p>Cardián no está dirigida a menores de 16 años.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>9. Cambios en esta política</h2>
+    <p>Podemos actualizar esta política ocasionalmente. Cuando lo hagamos, actualizaremos la fecha en la parte superior de esta página.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>10. Contacto</h2>
+    <div class="contact-box">
+      <p>¿Tienes preguntas sobre esta política? Escríbenos:</p>
+      <p><a href="mailto:soporte@yoguapps.com">soporte@yoguapps.com</a></p>
+      <p style="margin-top:8px;font-size:14px;color:rgba(255,255,255,0.35);">Respondemos en un plazo máximo de 72 horas hábiles.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 YoguApps · <a href="/">Inicio</a> · <a href="/cardian/">Cardián</a></p>
+</footer>
+
+</body>
+</html>
