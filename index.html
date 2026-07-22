@@ -209,7 +209,7 @@
     .apps-header { margin-bottom: 72px; }
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
@@ -259,6 +259,13 @@
       border-color: rgba(240,120,32,.35);
       box-shadow: 0 40px 80px rgba(240,120,32,.18);
     }
+    .app-card.teal::before {
+      background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(15,155,142,.16) 0%, transparent 70%);
+    }
+    .app-card.teal:hover {
+      border-color: rgba(15,155,142,.35);
+      box-shadow: 0 40px 80px rgba(15,155,142,.18);
+    }
 
     .card-inner { position: relative; z-index: 1; }
 
@@ -305,6 +312,15 @@
       background: #FB923C;
       animation: blink 2.4s ease-in-out infinite 1.2s;
     }
+    .app-status.soon-teal {
+      background: rgba(15,155,142,.12);
+      color: #5EEAD4;
+      border: 1px solid rgba(15,155,142,.22);
+    }
+    .app-status.soon-teal .dot {
+      background: #2DD4BF;
+      animation: blink 2.4s ease-in-out infinite 1.8s;
+    }
 
     .app-name {
       font-size: clamp(28px, 3.5vw, 40px);
@@ -321,6 +337,7 @@
     .purple .app-name span { background-image: linear-gradient(130deg, #8B5CF6 20%, #C4B5FD 100%); }
     .blue   .app-name span { background-image: linear-gradient(130deg, #3B82F6 20%, #93C5FD 100%); }
     .orange .app-name span { background-image: linear-gradient(130deg, #F07820 20%, #FDBA74 100%); }
+    .teal   .app-name span { background-image: linear-gradient(130deg, #0F9B8E 20%, #5EEAD4 100%); }
 
     .app-desc {
       font-size: 15px;
@@ -377,14 +394,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(160deg, #1a0e05 0%, #261508 55%, #100905 100%);
+      background: linear-gradient(160deg, #05100f 0%, #0c1f1d 55%, #050e0d 100%);
     }
     .phone-placeholder::after {
       content: '';
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: #F07820;
+      background: #0F9B8E;
       filter: blur(20px);
       opacity: .38;
     }
@@ -612,9 +629,6 @@
     .mobile-menu a:hover { color: var(--fg); }
 
     /* ───── RESPONSIVE ───── */
-    @media (max-width: 1000px) {
-      .apps-grid { grid-template-columns: 1fr 1fr; }
-    }
     @media (max-width: 768px) {
       #nav { padding: 16px 20px; }
       .nav-links { display: none; }
@@ -772,6 +786,31 @@
       </div>
     </a>
 
+    <!-- Cardián -->
+    <a class="app-card teal reveal d4" href="/cardian/" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-inner">
+        <div class="app-status soon-teal">
+          <span class="dot"></span>Próximamente
+        </div>
+        <h3 class="app-name"><span>Cardián</span></h3>
+        <p class="app-desc">Tu coche, siempre al día. Mantenimiento, recordatorios, historial de intervenciones y gasolineras más baratas cerca de ti.</p>
+        <div class="phones">
+          <div class="phone">
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <div class="phone-placeholder"></div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <div class="phone-placeholder"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+
   </div>
 </div>
 
@@ -795,7 +834,7 @@
     </div>
     <div class="stats-col">
       <div class="stat-tile reveal d1">
-        <div class="stat-num">3</div>
+        <div class="stat-num">4</div>
         <div class="stat-desc">Apps en desarrollo</div>
       </div>
       <div class="stat-tile reveal d2">
@@ -831,6 +870,7 @@
   <div class="footer-inner">
     <span class="footer-copy">© 2026 YoguApps. Todos los derechos reservados.</span>
     <nav class="footer-nav">
+      <a href="/cardian/privacy/">Privacidad Cardián</a>
       <a href="/trazas/privacy/">Privacidad Trazas</a>
       <a href="/peakyou/privacy/">Privacidad PeakYou</a>
       <a href="/piperos/privacy/">Privacidad Piperos</a>
